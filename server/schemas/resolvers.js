@@ -1,16 +1,15 @@
-const { User, Thought } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
+const { User, Thought } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
     me: async (parent, args, context) => {
       if (context.user) {
-        const userData = await User.findOne({})
-          .select('-__v')
+        const userData = await User.findOne({ _id: context.user._id })
+          .select('-__v -password')
           .populate('thoughts')
-          .populate('friends')
-        ;
+          .populate('friends');
 
         return userData;
       }
@@ -55,7 +54,7 @@ const resolvers = {
       const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
-        throw new AuthenticationError('Incorrect credentials')
+        throw new AuthenticationError('Incorrect credentials');
       }
 
       const token = signToken(user);
