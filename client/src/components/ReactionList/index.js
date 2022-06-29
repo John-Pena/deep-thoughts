@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const ReactionList = ({ reactions }) => {
-  return(
+  return (
     <div className="card mb-3">
       <div className="card-header">
         <span className="text-light">Reactions</span>

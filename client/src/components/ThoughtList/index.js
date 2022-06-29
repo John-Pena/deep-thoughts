@@ -10,7 +10,7 @@ const ThoughtList = ({ thoughts, title }) => {
     <div>
       <h3>{title}</h3>
       {thoughts &&
-        thoughts.map((thought) => (
+        thoughts.map(thought => (
           <div key={thought._id} className="card mb-3">
             <p className="card-header">
               <Link
@@ -20,7 +20,7 @@ const ThoughtList = ({ thoughts, title }) => {
               >
                 {thought.username}
               </Link>{' '}
-              {thought.username} thought on {thought.createdAt}
+              thought on {thought.createdAt}
             </p>
             <div className="card-body">
               <Link to={`/thought/${thought._id}`}>
