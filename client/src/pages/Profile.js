@@ -7,11 +7,11 @@ import FriendList from '../components/FriendList';
 import { useQuery } from '@apollo/client';
 import { QUERY_USER } from '../utils/queries';
 
-const Profile = (props) => {
+const Profile = () => {
   const { username: userParam } = useParams();
 
   const { loading, data } = useQuery(QUERY_USER, {
-    variables: { username: userParam },
+    variables: { username: userParam }
   });
 
   const user = data?.user || {};
